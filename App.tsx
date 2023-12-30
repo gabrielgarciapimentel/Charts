@@ -1,40 +1,48 @@
+import {ThemeProvider as CThemeProvider} from '@shopify/restyle';
 import React from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {dark} from './src/styles/theme/dark';
+import {Box, Text, theme} from './src/styles/theme';
+import {ColorSchemeButton} from './src/components/ColorShemeButton';
+import {ColorSchemeProvider} from './src/components/ColorSchemeProvider';
+import {useColorScheme} from './src/hooks/useColorScheme';
 
-export function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+function ThemeProvider() {
+  const {colorScheme} = useColorScheme();
 
   return (
-    <SafeAreaView style={[backgroundStyle, styles.container]}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <View>
-        <Text>OLÁ CHARTS</Text>
-      </View>
-    </SafeAreaView>
+    <CThemeProvider theme={colorScheme === 'dark' ? dark : theme}>
+      <Box padding="m" backgroundColor="mainBackground" flex={1}>
+        <Box marginBottom="m" marginTop="m">
+          <ColorSchemeButton />
+        </Box>
+        <Box
+          backgroundColor="primaryCardBackground"
+          margin="s"
+          padding="m"
+          flexGrow={1}>
+          <Text variant="body" color="primaryCardText">
+            Primary Card
+          </Text>
+        </Box>
+        <Box
+          backgroundColor="secondaryCardBackground"
+          margin="s"
+          padding="m"
+          flexGrow={1}>
+          <Text variant="body" color="secondaryCardText">
+            Secondary Card
+          </Text>
+        </Box>
+      </Box>
+    </CThemeProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#00cb00',
-    flex: 1,
-  },
-});
+export function App(): React.JSX.Element {
+  return (
+    <ColorSchemeProvider>
+      <ThemeProvider />
+    </ColorSchemeProvider>
+  );
+}
