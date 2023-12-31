@@ -1,5 +1,6 @@
 import React from 'react';
-import {Text} from '../../styles/theme';
+import Icon from 'react-native-vector-icons/Feather';
+
 import {
   Gesture,
   GestureDetector,
@@ -21,12 +22,8 @@ export const ColorSchemeButton = () => {
     <GestureHandlerRootView>
       <GestureDetector gesture={pan}>
         <>
-          {colorScheme === 'light' && (
-            <Text color="primaryCardBackground">lua</Text>
-          )}
-          {colorScheme === 'dark' && (
-            <Text color="primaryCardBackground">sol</Text>
-          )}
+          {colorScheme === 'light' && <Icon name="moon" />}
+          {colorScheme === 'dark' && <Icon name="sun" color={'#FFF'} />}
         </>
       </GestureDetector>
     </GestureHandlerRootView>

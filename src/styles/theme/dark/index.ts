@@ -8,7 +8,9 @@ export const dark: Theme = {
     mainBackground: palette.black,
     mainForeground: palette.white,
 
-    secondaryCardBackground: palette.darkGray,
+    secondaryCardBackground: palette.dark,
     secondaryCardText: palette.white,
+
+    primaryLineColor: palette.darkPrimary,
   },
 };

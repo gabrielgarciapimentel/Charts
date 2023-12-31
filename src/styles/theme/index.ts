@@ -10,6 +10,7 @@ export const theme = createTheme({
   spacing: {
     s: 8,
     m: 16,
+    g: 24,
   },
   colors: {
     mainBackground: palette.lightGray,
@@ -19,6 +20,8 @@ export const theme = createTheme({
     secondaryCardBackground: palette.white,
     primaryCardText: palette.white,
     secondaryCardText: palette.black,
+
+    primaryLineColor: palette.whitePrimary,
   },
   textVariants: {
     defaults: {},
